@@ -1,4 +1,4 @@
-*.class
-../output_file.txt
+/*.class
+output_file.txt
 *.iml
-out/
+out/*
