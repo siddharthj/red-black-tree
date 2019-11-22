@@ -1,0 +1,4 @@
+*.class
+../output_file.txt
+*.iml
+out/
