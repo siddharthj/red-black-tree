@@ -1,15 +1,31 @@
-package com.siddharth;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The class handles all the input parsing responsibility.
+ */
 public final class InputParser {
+    /**
+     * Reads the pattern of this format Insert(10,20)
+     */
     private static Pattern PATTERN1 = Pattern.compile("Insert\\((\\d+),(\\d+)\\)");
+    /**
+     * Reads the pattern of this format PrintBuilding(10,2000)
+     */
     private static Pattern PATTERN2 = Pattern.compile("PrintBuilding\\((\\d+),(\\d+)\\)");
+    /**
+     * Reads the pattern of this format PrintBuilding(56)
+     */
     private static Pattern PATTERN3 = Pattern.compile("PrintBuilding\\((\\d+)\\)");
 
+    /**
+     * This method uses regex to parse the string and extract the information in the InputNode type of object per line
+     * @param inputLines
+     * @return
+     * @throws InputNotInCorrectFormatException
+     */
     public static List<InputNode> parseInput(List<String> inputLines) throws InputNotInCorrectFormatException {
         List<InputNode> nodes = new ArrayList<>();
         for (String inputLine : inputLines) {

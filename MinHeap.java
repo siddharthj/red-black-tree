@@ -1,27 +1,47 @@
-package com.siddharth;
-
 import java.util.Optional;
 
+/**
+ * Min heap, it will keep the building in a heap structure keyed on executed_time
+ * so that we can work on the building with least executed_time
+ */
 public class MinHeap {
-
+    // Array based implementation
     private BuildingData[] items;
+    // Size of the heap
     private Integer heapSize;
 
+    /**
+     * Contructor
+     */
     public MinHeap() {
-        items = new BuildingData[2001];
+        items = new BuildingData[2100];
         heapSize = 0;
     }
 
+    /**
+     * Swap the building data
+     * @param i
+     * @param j
+     */
     private void swap(int i, int j) {
         BuildingData k = items[i];
         items[i] = items[j];
         items[j] = k;
     }
 
+    /**
+     * Is the min heap empty
+     * @return
+     */
     public boolean isEmpty() {
         return heapSize == 0;
     }
 
+    /**
+     * Increase key of a particuar building, basically update the new execution time.
+     * @param index
+     * @param newExecutionTime
+     */
     public void increaseKey(Integer index, Integer newExecutionTime) {
         BuildingData buildingData = items[index];
         buildingData.setExecutedTime(newExecutionTime);
@@ -29,6 +49,10 @@ public class MinHeap {
         heapify(index);
     }
 
+    /**
+     * Insert the building into the hea.
+     * @param buildingData
+     */
     public void insertKey(BuildingData buildingData) {
         heapSize++;
         int index = heapSize - 1;
@@ -50,6 +74,10 @@ public class MinHeap {
         }
     }
 
+    /**
+     * Remove min from the heap.
+     * @return
+     */
     public Optional<BuildingData> removeMin() {
         if (heapSize == 0) {
             return Optional.empty();
@@ -62,10 +90,18 @@ public class MinHeap {
         return Optional.of(buildingData);
     }
 
+    /**
+     * Peek the min value of the heap.
+     * @return
+     */
     public BuildingData peekMin() {
         return items[0];
     }
 
+    /**
+     * Heapify
+     * @param index
+     */
     private void heapify(Integer index) {
         int leftIndex = (index * 2) + 1;
         int rightIndex = (index * 2) + 2;
